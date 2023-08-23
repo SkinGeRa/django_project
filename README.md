@@ -1,1 +1,1 @@
-# home_work_19_2
+# django_project
