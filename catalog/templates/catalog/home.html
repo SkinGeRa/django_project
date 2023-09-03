@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,6 +13,7 @@
     <nav class="ms-5">
         <a class="p-2 btn btn-outline-primary" href="/">Каталог</a>
         <a class="p-2 btn btn-outline-primary" href="/contacts/">Контакты</a>
+        <a class="p-2 btn btn-outline-primary" href="/product/">Товары</a>
     </nav>
 </div>
 
@@ -24,21 +26,8 @@
 <div class="container">
     <div class="row text-center">
         <div class="col-3">
-            <div class="card mb-4 box-shadow">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Удобный сервис рассылок</h4>
-                </div>
-                <div class="card-body">
-                    <h1 class="card-title pricing-card-title">$ 140</h1>
-                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                        <li>- Неограниченная лицензия</li>
-                        <li>- Поддержка</li>
-                        <li>- Установка на сервер</li>
-                        <li>- Получение обновлений</li>
-                    </ul>
-                    <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
-                </div>
-            </div>
+            {% block content %}
+            {% endblock %}
         </div>
     </div>
 
