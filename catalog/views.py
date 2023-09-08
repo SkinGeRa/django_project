@@ -18,13 +18,12 @@ def contacts(request):
 
 
 def home(request):
-    return render(request, 'catalog/home.html')
+    return render(request, 'catalog/base.html')
 
 
 def product(request, pk):
     product_item = Product.objects.get(pk=pk)
     context = {
         'object_list': product_item,
-        'title': f'Категория товара - {product_item.product_name}'
     }
     return render(request, 'catalog/product.html', context)
