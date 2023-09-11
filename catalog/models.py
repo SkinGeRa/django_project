@@ -44,3 +44,19 @@ class Product(models.Model):
         with connection.cursor() as cursor:
             cursor.execute(f'TRUNCATE TABLE {cls._meta.db_table} RESTART IDENTITY CASCADE')
 
+
+class Blog(models.Model):
+    title = models.CharField(max_length=150, verbose_name='заголовок')
+    slug = models.CharField(max_length=150, verbose_name='slug', **NULLABLE)
+    description = models.TextField(verbose_name='содержимое')
+    image = models.ImageField(upload_to='blog/', verbose_name='изображение', **NULLABLE)
+    create_date = models.DateField(verbose_name='дата создания')
+    is_published = models.BooleanField(verbose_name='признак публикации', default=True)
+    count_views = models.IntegerField(verbose_name='количество просмотров', default=0)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Блог'
+        verbose_name_plural = 'Блоги'
