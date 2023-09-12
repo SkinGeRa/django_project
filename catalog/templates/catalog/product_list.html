@@ -4,6 +4,9 @@
         <h1 class="display-4">Каталог товаров</h1>
         <p class="lead">Skystore - это отличный вариант хранения ваших плагинов и примеров кода, который вы бы хотели
             продать</p>
+        <div class="col-12 mb-5">
+            <a class="btn btn-outline-primary" href="{% url 'catalog:create_product' %}">Добавить новый продукт</a>
+        </div>
     </div>
     {% for object in object_list %}
         <div class="card mb-4 box-shadow mr-4">
@@ -14,7 +17,12 @@
                 <h1 class="card-title pricing-card-title">{{ object.product_purchase_price }} RUR</h1>
                 <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                 </ul>
-                <a type="button" class="btn btn-lg btn-block btn-outline-primary" href="{% url 'catalog:product' object.pk %}">Подробнее</a>
+                <a type="button" class="btn btn-lg btn-block btn-outline-primary"
+                   href="{% url 'catalog:view_product' object.pk %}">Подробнее</a>
+                <a type="button" class="btn btn-lg btn-block btn-outline-primary"
+                   href="{% url 'catalog:edit_product' object.pk %}">Изменить</a>
+                <a type="button" class="btn btn-lg btn-block btn-outline-primary"
+                   href="{% url 'catalog:delete_product' object.pk %}">Удалить</a>
             </div>
         </div>
     {% endfor %}
