@@ -5,11 +5,25 @@ from pytils.translit import slugify
 
 from catalog.forms import ProductForm, VersionForm
 from catalog.models import Product, Blog, Version
+from catalog.services import get_category_set
 
 
 class ProductListView(ListView):
     model = Product
     form_class = ProductForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        active_versions = Version.objects.filter(is_actual=True)
+        for product in context['object_list']:
+            version = active_versions.filter(product=product)
+            if version:
+                product.version = {
+                    'name': version[0].version_name,
+                    'number': version[0].version_number,
+                }
+        context['categories'] = get_category_set()
+        return context
 
 
 class ContactsView(TemplateView):
